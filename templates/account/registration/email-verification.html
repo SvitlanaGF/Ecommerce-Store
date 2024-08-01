@@ -1,0 +1,10 @@
+{% include 'base.html' %}
+{% load static %}
+
+
+{% autoescape off %}
+
+    Thank you for registering on our website.
+    Please, verify your email here:
+    http://{{ domain }}{% url 'email_verification' uidb64=uid token=token %}
+{% endautoescape %}

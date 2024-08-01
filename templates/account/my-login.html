@@ -1,0 +1,31 @@
+{% include 'base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+    <style>
+        body{
+            background-color: darksalmon;
+        }
+    </style>
+    
+	<body>
+    <br>
+        <div class="container bg-white shadow-md p-5">
+            <h3>Login to account</h3>
+            <br>
+            <br>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                {{ form.username|as_crispy_field }}
+                <br>
+                <br>
+                {{ form.password|as_crispy_field }}
+                <br>
+                <br>
+                <input type="submit" class="btn btn-secondary btn-lg btn-block w-100 p-2" value="Login">
+            </form>
+            
+        </div>
+    
+    </body>
+    <br><br>
+{% endblock %}

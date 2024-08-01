@@ -1,0 +1,23 @@
+{% include 'base.html' %}
+{% load static %}
+{% block content %}
+	 <style>
+        body{
+            background-color: darksalmon;
+        }
+    </style>
+    
+	<body>
+    <br>
+        <div class="container bg-white shadow-md p-5 form-layout">
+           <div class="text-center">
+                <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                <br>
+                <h3> <strong> Email verification failed!</strong></h3>
+                <hr>
+                <p> Please try again.</p>
+            
+           </div>
+        <br>
+        </div>
+{% endblock %}
