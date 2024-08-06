@@ -1,0 +1,14 @@
+{% include 'base.html' %}
+{% load crispy_forms_filters %}
+{% block content %}
+        <style>
+        body{
+            background-color: darkgray;
+        }
+    </style>
+    <body>
+    {% block content_acc %}
+    {% endblock %}
+    </body>
+    <br><br>
+{% endblock %}

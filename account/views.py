@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 # from django.template import ContextPopException
 
-from .forms import CreateUserForm, LoginForm
+from .forms import CreateUserForm, LoginForm, UpdateUserForm
 from django.contrib.sites.shortcuts import get_current_site
 from .token import user_tokenizer_generate
 from django.template.loader import render_to_string
@@ -10,6 +10,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.models import User
 from django.contrib.auth.models import auth
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def register(request):
@@ -77,5 +79,49 @@ def my_login(request):
     return render(request, 'account/my-login.html', context=context)
 
 
+@login_required(login_url='my_login')
 def dashboard(request):
     return render(request, 'account/dashboard.html')
+
+
+def user_logout(request):
+    auth.logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('store')
+
+# def user_logout(request):
+#     try:
+#         for key in list(request.session.keys()):
+#             if key == "session_key":
+#                 continue
+#             else:
+#                 del request.session[key]
+#     except KeyError:
+#         pass
+#     messages.success(request, 'You have been logged out.')
+#
+#     return redirect('store')
+
+@login_required(login_url='my_login')
+def profile_update(request):
+    form = UpdateUserForm(instance=request.user)
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Your profile has been updated.')
+            return redirect('dashboard')
+    context = {'user_form': form}
+    render(request, 'account/update-acc.html', context=context)
+
+
+@login_required(login_url='my_login')
+def delete_profile(request):
+    user = User.objects.get(id=request.user.id)
+    if request.method == 'POST':
+        user.delete()
+        messages.error(request, 'Your account has been deleted.')
+        return redirect('store')
+    return render(request, 'account/delete-acc.html')
+
+

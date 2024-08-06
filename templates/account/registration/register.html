@@ -1,13 +1,6 @@
-{% include 'base.html' %}
 {% load crispy_forms_filters %}
-{% block content %}
-    <style>
-        body{
-            background-color: darksalmon;
-        }
-    </style>
-    
-	<body>
+{% include 'account/acc_base.html' %}
+{% block content_acc %}
     <br>
         <div class="container bg-white shadow-md p-5">
             <h3>Create account</h3>
@@ -27,11 +20,10 @@
                 {{ form.password2|as_crispy_field }}
                 <br>
                 <br>
-                <input type="submit" class="btn btn-secondary btn-lg btn-block w-100 p-2" value="Create account">
+                <input type="submit" class="btn btn-primary navbar-btn text-white w-100" value="Create account">
+                <br><br>
+                <a type="button" class="btn btn-secondary navbar-btn text-white" href="{% url 'my_login' %}">Have an account</a>
             </form>
-            
+
         </div>
-    
-    </body>
-    <br><br>
 {% endblock %}

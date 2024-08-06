@@ -1,0 +1,19 @@
+{% include 'account/acc_base.html' %}
+{% block content_acc %}
+    <br>
+        <div class="container bg-white shadow-md p-5">
+            <h3>Delete account</h3>
+            <hr>
+            <br>
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                <br>
+                <p>Are you sure?</p>
+                <br>
+                <input type="submit" class="btn btn-danger navbar-btn text-white w-100" value="Delete">
+                <a href="{% url 'manage_profile' %}" type="button" class="btn btn-primary navbar-btn text-white w-100">Back</a>
+            </form>
+            
+        </div>
+
+{% endblock %}

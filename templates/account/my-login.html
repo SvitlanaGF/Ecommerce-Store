@@ -1,16 +1,10 @@
-{% include 'base.html' %}
 {% load crispy_forms_filters %}
-{% block content %}
-    <style>
-        body{
-            background-color: darksalmon;
-        }
-    </style>
-    
-	<body>
+{% include 'account/acc_base.html' %}
+{% block content_acc %}
     <br>
         <div class="container bg-white shadow-md p-5">
-            <h3>Login to account</h3>
+            <h3><i class="fa-solid fa-right-to-bracket"></i>&nbsp;Login to account</h3>
+            <hr>
             <br>
             <br>
             <form method="POST" autocomplete="off">
@@ -21,11 +15,12 @@
                 {{ form.password|as_crispy_field }}
                 <br>
                 <br>
-                <input type="submit" class="btn btn-secondary btn-lg btn-block w-100 p-2" value="Login">
+                <input type="submit" class="btn btn-primary navbar-btn text-white w-100" value="Login">
+                 <br><br>
+                {{ form.non_field_errors }}
+                <a type="button" class="btn btn-secondary navbar-btn text-white" href="{% url 'register' %}">Don't have an account</a>
+                 <br>
+                <a type="button" class="btn btn-secondary navbar-btn text-white" href="{% url 'password_reset' %}">Forget password</a>
             </form>
-            
         </div>
-    
-    </body>
-    <br><br>
 {% endblock %}

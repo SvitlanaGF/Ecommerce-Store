@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% include 'account/acc_base.html' %}
+{% block content_acc %}
+    <br>
+        <div class="container bg-white shadow-md p-5">
+            <h3>Welcome, {{ user }}!</h3>
+            <hr>
+            <h4>Options:</h4>
+            <br>
+            <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'cart-summary' %}"> My orders </a>
+            <br><br>
+            <a class="btn btn-primary navbar-btn text-white" type="button"  href="{% url 'manage_profile' %}"> Update or delete </a>
+        </div>
+{% endblock %}
